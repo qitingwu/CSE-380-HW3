@@ -10,6 +10,7 @@ export default class MainMenu extends Scene {
     // Layers, for multiple main menu screens
     private mainMenu: Layer;
     private about: Layer;
+    private controls: Layer;
 
     loadScene(){}
 
@@ -35,6 +36,7 @@ export default class MainMenu extends Scene {
         about.backgroundColor = Color.TRANSPARENT;
         about.onClickEventId = "about";
 
+
         /* ########## ABOUT SCREEN ########## */
         this.about = this.addUILayer("about");
         this.about.setHidden(true);
@@ -44,7 +46,7 @@ export default class MainMenu extends Scene {
 
         // HOMEWORK 3 - TODO
         // Give yourself credit for your work on this game!
-        const text1 = "This game was created by <YOUR NAME HERE>, Joe Weaver, and Richard McKenna";
+        const text1 = "This game was created by Qiting Wu, Joe Weaver, and Richard McKenna";
         const text2 = "using the Wolfie2D game engine, a TypeScript game engine created by";
         const text3 = "Joe Weaver and Richard McKenna.";
 
@@ -67,6 +69,7 @@ export default class MainMenu extends Scene {
         this.receiver.subscribe("play");
         this.receiver.subscribe("about");
         this.receiver.subscribe("menu");
+        
 
         // HOMEWORK 3 - TODO
         /*
@@ -84,6 +87,48 @@ export default class MainMenu extends Scene {
 
             Additionally, on the main menu, you should be able to press a button to reach the controls screen.
         */
+
+        // Add control screen button
+            const controls = this.add.uiElement(UIElementType.BUTTON, "mainMenu", {position: new Vec2(center.x, center.y + 200), text: "Controls"});
+            controls.size.set(200, 50);
+            controls.borderWidth = 2;
+            controls.borderColor = Color.WHITE;
+            controls.backgroundColor = Color.TRANSPARENT;
+            controls.onClickEventId = "controls";
+            
+            this.controls = this.addUILayer("controls");
+            this.controls.setHidden(true);
+    
+            const controlsHeader = <Label>this.add.uiElement(UIElementType.LABEL, "controls", {position: new Vec2(center.x, center.y - 250), text: "Controls"});
+            controlsHeader.textColor = Color.WHITE;
+
+            const ctext1 = "WASD to move";
+            const ctext2 = "Q to drop an item";
+            const ctext3 = "E to pick up an item";
+            const ctext4 = "Click to use current item";
+            const ctext5 = "1&2 to change items";
+
+            
+            const cline1 = <Label>this.add.uiElement(UIElementType.LABEL, "controls", {position: new Vec2(center.x, center.y - 100), text: ctext1});
+            const cline2 = <Label>this.add.uiElement(UIElementType.LABEL, "controls", {position: new Vec2(center.x, center.y - 50), text: ctext2});
+            const cline3 = <Label>this.add.uiElement(UIElementType.LABEL, "controls", {position: new Vec2(center.x, center.y), text: ctext3});
+            const cline4 = <Label>this.add.uiElement(UIElementType.LABEL, "controls", {position: new Vec2(center.x, center.y + 50), text: ctext4});
+            const cline5 = <Label>this.add.uiElement(UIElementType.LABEL, "controls", {position: new Vec2(center.x, center.y + 100), text: ctext5});
+
+            cline1.textColor = Color.WHITE;
+            cline2.textColor = Color.WHITE;
+            cline3.textColor = Color.WHITE;
+            cline4.textColor = Color.WHITE;
+            cline5.textColor = Color.WHITE;
+
+            const controlsBack = this.add.uiElement(UIElementType.BUTTON, "controls", {position: new Vec2(center.x, center.y + 250), text: "Back"});
+            controlsBack.size.set(200, 50);
+            controlsBack.borderWidth = 2;
+            controlsBack.borderColor = Color.WHITE;
+            controlsBack.backgroundColor = Color.TRANSPARENT;
+            controlsBack.onClickEventId = "menu";
+
+            this.receiver.subscribe("controls");
     }
 
     updateScene(){
@@ -101,8 +146,14 @@ export default class MainMenu extends Scene {
                 this.mainMenu.setHidden(true);
             }
 
+            if(event.type === "controls"){
+                this.controls.setHidden(false);
+                this.mainMenu.setHidden(true);
+            }
+
             if(event.type === "menu"){
                 this.mainMenu.setHidden(false);
+                this.controls.setHidden(true);
                 this.about.setHidden(true);
             }
         }
