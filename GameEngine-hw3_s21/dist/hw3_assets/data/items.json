@@ -2,11 +2,11 @@
     "items": [
         {
             "type": "healthpack",
-            "position": [440, 760]
+            "position": [440, 684]
         },
         {
             "type": "healthpack",
-            "position": [472, 760]
+            "position": [472, 724]
         },
         {
             "type": "healthpack",
@@ -25,7 +25,69 @@
         {
             "type": "weapon",
             "weaponType": "pistol", 
-            "position": [312, 263]
+            "position": [262, 264]
+        },
+        {
+            "type": "weapon",
+            "weaponType": "pistol", 
+            "position": [748, 414]
+        },
+        {
+            "type": "weapon",
+            "weaponType": "pistol", 
+            "position": [838, 176]
+        },
+
+        {
+            "type": "weapon",
+            "weaponType": "laser_gun", 
+            "position": [108, 820]
+        },
+        {
+            "type": "weapon",
+            "weaponType": "laser_gun", 
+            "position": [974, 560]
+        },
+        {
+            "type": "weapon",
+            "weaponType": "laser_gun", 
+            "position": [1000, 22]
+        },
+        {
+            "type": "weapon",
+            "weaponType": "laser_gun", 
+            "position": [84, 426]
+        },
+        {
+            "type": "weapon",
+            "weaponType": "laser_gun", 
+            "position": [516, 288]
+        },
+
+        {
+            "type": "weapon",
+            "weaponType": "knife", 
+            "position": [558, 826]
+        },
+        {
+            "type": "weapon",
+            "weaponType": "knife", 
+            "position": [954, 976]
+        },
+        {
+            "type": "weapon",
+            "weaponType": "knife", 
+            "position": [958, 276]
+        },
+        {
+            "type": "weapon",
+            "weaponType": "knife", 
+            "position": [984, 64]
+        },
+        {
+            "type": "weapon",
+            "weaponType": "knife", 
+            "position": [54, 124]
         }
     ]
 }

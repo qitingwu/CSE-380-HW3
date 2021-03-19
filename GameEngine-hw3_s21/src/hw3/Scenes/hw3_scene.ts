@@ -22,6 +22,7 @@ import { UIElementType } from "../../Wolfie2D/Nodes/UIElements/UIElementTypes";
 import Color from "../../Wolfie2D/Utils/Color";
 import Input from "../../Wolfie2D/Input/Input";
 import GameOver from "./GameOver";
+import WeaponTypeRegistry from "../Registry/WeaponTypeRegistry";
 
 export default class hw3_scene extends Scene {
     // The player
@@ -53,16 +54,16 @@ export default class hw3_scene extends Scene {
         // Load the tilemap
         // HOMEWORK 3 - TODO
         // Change this file to be your own tilemap
-        this.load.tilemap("level", "hw3_assets/tilemaps/TopDown_hw3.json");
+        this.load.tilemap("level", "hw3_assets/tilemaps/my_map.json");
 
         // Load the scene info
         this.load.object("weaponData", "hw3_assets/data/weaponData.json");
 
         // Load the nav mesh
-        this.load.object("navmesh", "hw3_assets/data/navmesh.json");
+        this.load.object("navmesh", "hw3_assets/data/mynavmesh.json");
 
         // Load in the enemy info
-        this.load.object("enemyData", "hw3_assets/data/enemy.json");
+        this.load.object("enemyData", "hw3_assets/data/myenemy.json");
 
         // Load in item info
         this.load.object("itemData", "hw3_assets/data/items.json");
@@ -340,7 +341,8 @@ export default class hw3_scene extends Scene {
             this.enemies[i].addPhysics(new AABB(Vec2.ZERO, new Vec2(5, 5)));
 
             if(data.route){
-                data.route = data.route.map((index: number) => this.graph.getNodePosition(index));                
+                data.route = data.route.map((index: number) => this.graph.getNodePosition(index));
+                data.mode = "patrol";                
             }
 
             if(data.guardPosition){

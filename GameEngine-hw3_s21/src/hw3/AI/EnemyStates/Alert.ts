@@ -1,3 +1,4 @@
+import Stack from "../../../Wolfie2D/DataTypes/Stack";
 import Vec2 from "../../../Wolfie2D/DataTypes/Vec2";
 import GameEvent from "../../../Wolfie2D/Events/GameEvent";
 import GameNode from "../../../Wolfie2D/Nodes/GameNode";
@@ -24,6 +25,7 @@ export default class Alert extends EnemyState {
     // Receives options.target
     onEnter(options: Record<string, any>): void {
         this.alertTimer.start();
+        this.path = this.owner.getScene().getNavigationManager().getPath(hw3_Names.NAVMESH, this.owner.position, options.target);
     }
 
     handleInput(event: GameEvent): void {
@@ -42,6 +44,15 @@ export default class Alert extends EnemyState {
             // The timer is up, return to the default state
             this.finished(EnemyStates.DEFAULT);
             return;
+        }
+
+        if(this.path != null){//add target later.......in onEnter! TODO!!
+            if(this.path.isDone()){
+                this.owner.pathfinding = false;
+            } else {
+                this.owner.moveOnPath(this.parent.speed * deltaT, this.path);
+                this.owner.rotation = Vec2.UP.angleToCCW(this.path.getMoveDirection(this.owner));
+            }
         }
 
         if(this.parent.getPlayerPosition() !== null){
